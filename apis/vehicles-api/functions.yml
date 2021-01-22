@@ -1,0 +1,40 @@
+createVehicle:
+  handler: apis/vehicles-api/controller.crud.create
+  memorySize: 128
+  description: Create vehicle item.
+  events:
+    - http:
+        path: vehicles
+        method: post
+listVehicle:
+  handler: apis/vehicles-api/controller.crud.list
+  memorySize: 128
+  description: List vehicle items.
+  events:
+    - http:
+        path: vehicles
+        method: get
+retrieveVehicle:
+  handler: apis/vehicles-api/controller.crud.retrieve
+  memorySize: 128
+  description: Retrieve vehicle item.
+  events:
+    - http:
+        path: vehicles/{id}
+        method: get
+updateVehicle:
+  handler: apis/vehicles-api/controller.crud.update
+  memorySize: 128
+  description: Update vehicle item.
+  events:
+    - http:
+        path: vehicles/{id}
+        method: patch
+destroyVehicle:
+  handler: apis/vehicles-api/controller.crud.destroy
+  memorySize: 128
+  description: Destroy vehicle item.
+  events:
+    - http:
+        path: vehicles/{id}
+        method: delete

@@ -1,5 +1,5 @@
 createPlanet:
-  handler: services/planets-api/controller.crud.create
+  handler: apis/planets-api/controller.crud.create
   memorySize: 128
   description: Create planet item.
   events:
@@ -7,15 +7,15 @@ createPlanet:
         path: planets
         method: post
 listPlanet:
-  handler: services/planets-api/controller.crud.list
+  handler: apis/planets-api/controller.crud.list
   memorySize: 128
-  description: List planets-api item.
+  description: List planet items.
   events:
     - http:
         path: planets
         method: get
 retrievePlanet:
-  handler: services/planets-api/controller.crud.retrieve
+  handler: apis/planets-api/controller.crud.retrieve
   memorySize: 128
   description: Retrieve planet item.
   events:
@@ -23,7 +23,7 @@ retrievePlanet:
         path: planets/{id}
         method: get
 updatePlanet:
-  handler: services/planets-api/controller.crud.update
+  handler: apis/planets-api/controller.crud.update
   memorySize: 128
   description: Update planet item.
   events:
@@ -31,7 +31,7 @@ updatePlanet:
         path: planets/{id}
         method: patch
 destroyPlanet:
-  handler: services/planets-api/controller.crud.destroy
+  handler: apis/planets-api/controller.crud.destroy
   memorySize: 128
   description: Destroy planet item.
   events:

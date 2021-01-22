@@ -1,4 +1,4 @@
-service: star-wars-api
+service: swapiReplica
 
 frameworkVersion: '2'
 
@@ -9,7 +9,8 @@ provider:
   stage: dev
   region: us-east-1
   environment:
-    PLANET_TABLE: ${self:service}-${opt:stage, self:provider.stage}
+    PLANET_TABLE: ${self:service}-${opt:stage, self:provider.stage}-planet
+    VEHICLE_TABLE: ${self:service}-${opt:stage, self:provider.stage}-vehicle
   iamRoleStatements:
     - Effect: Allow
       Action:
@@ -18,27 +19,16 @@ provider:
         - dynamodb:GetItem
         - dynamodb:PutItem
         - dynamodb:UpdateItem
-        - dynamodb:DeleteItem
+        - dynamodb:DeleteItemser
       Resource: "*"
 
 resources:
   Resources:
     PlanetDynamoDbTable:
-      Type: 'AWS::DynamoDB::Table'
-      DeletionPolicy: Retain
-      Properties:
-        AttributeDefinitions:
-          - AttributeName: "id"
-            AttributeType: "S"
-        KeySchema:
-          - AttributeName: "id"
-            KeyType: "HASH"
-        ProvisionedThroughput:
-          ReadCapacityUnits: 1
-          WriteCapacityUnits: 1
-        StreamSpecification:
-          StreamViewType: "NEW_AND_OLD_IMAGES"
-        TableName: ${self:provider.environment.PLANET_TABLE}
+      ${file(./apis/planets-api/resources.yml)}
+    VehicleDynamoDbTable:
+      ${file(./apis/vehicles-api/resources.yml)}
 
 functions:
-  - ${file(./services/planets-api/functions.yml)}
+  - ${file(./apis/planets-api/functions.yml)}
+  - ${file(./apis/vehicles-api/functions.yml)}

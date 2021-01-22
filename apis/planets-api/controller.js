@@ -1,6 +1,6 @@
 'use strict';
 
-const crud = require('../shared/crud');
+const crud = require('../../shared/crud');
 
 const table = process.env.PLANET_TABLE
 const createFields = [
